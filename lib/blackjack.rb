@@ -19,12 +19,14 @@ class Blackjack
     start
     get_user_bet
     starting_hand
-    show_current_hand
+    show_dealer_hand
+    show_player_hand
     get_hit_or_stand
   end
 
   def game_round
-    show_current_hand
+    show_dealer_hand
+    show_player_hand
     get_hit_or_stand
   end
 
@@ -95,10 +97,15 @@ class Blackjack
     @player.hand.cards << @dealer.deal
   end
 
-  def show_current_hand
+  def show_player_hand
     @player.hand.check_for_bust
-    current_hand = @player.hand.to_s
-    puts "Your current hand is #{current_hand}"
+    player_hand = @player.hand.to_s
+    puts "Your current hand is #{player_hand}"
+  end
+
+  def show_dealer_hand
+    dealer_hand = @dealer.hand.cards.first.to_s
+    puts "The dealer is showing a #{dealer_hand}"
   end
 
   def finish_game
