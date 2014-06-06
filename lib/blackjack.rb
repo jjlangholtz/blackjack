@@ -48,19 +48,20 @@ class Blackjack
       end
       game_round
     else
-      compare_to_dealer
+      dealer_draws
     end
   end
 
   def compare_to_dealer
+    puts "You have #{@player.hand.hand_value}."
     if @player.hand.hand_value == @dealer.hand.hand_value
-      puts "The dealer had #{@dealer.hand.hand_value}. Dealer wins!"
+      puts "The dealer has #{@dealer.hand.hand_value}. Dealer wins!"
       you_lose
     elsif @player.hand.hand_value < @dealer.hand.hand_value
-      puts "The dealer had #{@dealer.hand.hand_value}. Dealer wins!"
+      puts "The dealer has #{@dealer.hand.hand_value}. Dealer wins!"
       you_lose
     else
-      puts "The dealer had #{@dealer.hand.hand_value}. You win!"
+      puts "The dealer has #{@dealer.hand.hand_value}. You win!"
       you_win
     end
   end
@@ -106,6 +107,18 @@ class Blackjack
   def show_dealer_hand
     dealer_hand = @dealer.hand.cards.first.to_s
     puts "The dealer is showing a #{dealer_hand}"
+  end
+
+  def dealer_draws
+    while @dealer.hand.hand_value < 17
+      @dealer.draw
+    end
+    if @dealer.hand.value > 21
+      puts 'The dealer has busted!'
+      you_win
+    else
+      compare_to_dealer
+    end
   end
 
   def finish_game

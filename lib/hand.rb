@@ -19,7 +19,7 @@ class Hand
 
   def check_for_ace
     ranks = @cards.map { |card| card.rank.to_s }
-    ranks.include?('A') if @value += 10
+    @value += 10 if ranks.include?('A')
   end
 
   def to_s
