@@ -6,14 +6,6 @@ class HandTest < MiniTest::Unit::TestCase
     @hand = Hand.new
   end
 
-  def test_that_draw_puts_next_card_in_hand
-    cards_in_hand = []
-    cards_in_hand << Card.new(:A, :clubs)
-    @hand.draw
-
-    assert_equal @hand.cards, cards_in_hand
-  end
-
   def test_hand_busts_over_21
     bad_hand = Hand.new
     bad_hand.cards << Card.new(10, :clubs)

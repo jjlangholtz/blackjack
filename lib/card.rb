@@ -40,6 +40,23 @@ class Card
     end
   end
 
+  def rank_format
+    @rank.to_s
+  end
+
+  def suit_format
+    case
+    when @suit == :clubs
+      "C"
+    when @suit == :hearts
+      "H"
+    when @suit == :diamonds
+      "D"
+    when @suit == :spades
+      "S"
+    end
+  end
+
   def greater_than?(other)
     rank_order > other.rank_order
   end
