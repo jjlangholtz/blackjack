@@ -17,16 +17,15 @@ class Blackjack
 
   def play
     start
+    get_user_bet
     starting_hand
     show_current_hand
     get_hit_or_stand
-    get_user_bet
   end
 
   def game_round
     show_current_hand
     get_hit_or_stand
-    get_user_bet
   end
 
   def get_user_bet
@@ -40,6 +39,11 @@ class Blackjack
     input = gets.chomp
     if input == 'H'
       @player.hand.cards << @dealer.deal
+      @player.hand.check_for_bust
+      if @player.hand.bust == true
+        puts "Oh no you have #{@player.hand.hand_value} you busted!"
+        you_lose
+      end
       game_round
     else
       compare_to_dealer
@@ -49,11 +53,38 @@ class Blackjack
   def compare_to_dealer
     if @player.hand.hand_value == @dealer.hand.hand_value
       puts "The dealer had #{@dealer.hand.hand_value}. Dealer wins!"
+      you_lose
     elsif @player.hand.hand_value < @dealer.hand.hand_value
       puts "The dealer had #{@dealer.hand.hand_value}. Dealer wins!"
+      you_lose
     else
       puts "The dealer had #{@dealer.hand.hand_value}. You win!"
+      you_win
     end
+  end
+
+  def you_win
+    @player.chips += @bet
+    next_round
+  end
+
+  def you_lose
+    @player.chips -= @bet
+    finish_game if @player.chips <= 0
+    next_round
+  end
+
+  def next_round
+    discard_hands
+    starting_hand
+    get_user_bet
+    game_round
+  end
+
+  def discard_hands
+    @player.hand.cards = []
+    @player.hand.bust = false
+    @dealer.hand.cards = []
   end
 
   def starting_hand
@@ -65,8 +96,13 @@ class Blackjack
   end
 
   def show_current_hand
-    current_hand = @player.hand.hand_value
+    @player.hand.check_for_bust
+    current_hand = @player.hand.to_s
     puts "Your current hand is #{current_hand}"
+  end
+
+  def finish_game
+    puts 'You are out of chips! Game over :('
   end
 end
 

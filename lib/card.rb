@@ -28,7 +28,7 @@ class Card
   def rank_value
     case
     when @rank == :A
-      11
+      1
     when @rank == :J
       10
     when @rank == :Q
@@ -46,15 +46,15 @@ class Card
 
   def suit_format
     case
-    when @suit == :clubs
-      "C"
-    when @suit == :hearts
-      "H"
-    when @suit == :diamonds
-      "D"
-    when @suit == :spades
-      "S"
+    when @suit == :clubs then 'C'
+    when @suit == :hearts then 'H'
+    when @suit == :diamonds then 'D'
+    when @suit == :spades then 'S'
     end
+  end
+
+  def to_s
+    rank_format + suit_format
   end
 
   def greater_than?(other)
