@@ -12,14 +12,10 @@ class Card
 
   def rank_order
     case
-    when @rank == :A
-      1
-    when @rank == :J
-      11
-    when @rank == :Q
-      12
-    when @rank == :K
-      13
+    when @rank == :A then 1
+    when @rank == :J then 11
+    when @rank == :Q then 12
+    when @rank == :K then 13
     else
       @rank
     end
@@ -27,14 +23,10 @@ class Card
 
   def rank_value
     case
-    when @rank == :A
-      1
-    when @rank == :J
-      10
-    when @rank == :Q
-      10
-    when @rank == :K
-      10
+    when @rank == :A then 1
+    when @rank == :J then 10
+    when @rank == :Q then 10
+    when @rank == :K then 10
     else
       @rank
     end
