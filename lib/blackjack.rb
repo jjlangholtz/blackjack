@@ -114,7 +114,7 @@ class Blackjack
       @dealer.draw
     end
     if @dealer.hand.value > 21
-      puts 'The dealer has busted!'
+      puts "The dealer has #{@dealer.hand.value}. Dealer busts!"
       you_win
     else
       compare_to_dealer
