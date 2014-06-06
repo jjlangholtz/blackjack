@@ -10,7 +10,7 @@ class Card
     self.rank == other.rank && self.suit == other.suit
   end
 
-  def rank_value
+  def rank_order
     case
     when @rank == :A
       1
@@ -25,7 +25,22 @@ class Card
     end
   end
 
+  def rank_value
+    case
+    when @rank == :A
+      11
+    when @rank == :J
+      10
+    when @rank == :Q
+      10
+    when @rank == :K
+      10
+    else
+      @rank
+    end
+  end
+
   def greater_than?(other)
-    rank_value > other.rank_value
+    rank_order > other.rank_order
   end
 end
