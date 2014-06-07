@@ -130,7 +130,7 @@ class Blackjack
   end
 
   def finish_game
-   binding.pry
+ # binding.pry
     puts 'You are out of chips! Game over :('
     exit
   end

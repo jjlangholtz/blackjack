@@ -16,3 +16,5 @@ Clone into local directory and change directory into /blackjack then run:
 
 You start the game with $100 in chips and the game ends when you no longer have
 any chips left.
+
+[Sample script](https://gist.github.com/jjlangholtz/a586f3f2da32ef45e272)
