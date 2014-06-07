@@ -9,7 +9,7 @@ class Hand
     @bust = false
     @ace = false
     @value = 10
-    binding.pry
+  # binding.pry
   end
 
   def check_for_bust

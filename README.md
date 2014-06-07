@@ -6,10 +6,13 @@
 Reach a final score higher than the dealer without exceeding 21; or
 Let the dealer draw additional cards until his or her hand exceeds 21.
 
--from Wikipedia
+> -from [Blackjack on Wikipedia](http://en.wikipedia.org/wiki/Blackjack)
 
-## Usage
+# Usage
 
-Clone into local directory and change directory into it then run:
+Clone into local directory and change directory into /blackjack then run:
 
-    ruby blackjack.rb
+    ruby -Ilib lib/blackjack.rb
+
+You start the game with $100 in chips and the game ends when you no longer have
+any chips left.
