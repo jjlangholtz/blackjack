@@ -21,13 +21,13 @@ class Blackjack
     starting_hand
     show_dealer_hand
     show_player_hand
-    get_hit_or_stand
+    player_move
   end
 
   def game_round
     show_dealer_hand
     show_player_hand
-    get_hit_or_stand
+    player_move
   end
 
   def get_user_bet
@@ -36,8 +36,8 @@ class Blackjack
     @bet = gets.to_i
   end
 
-  def get_hit_or_stand
-    print "Do you want to (H)it or (S)tand? "
+  def player_move
+    print "Do you want to (H)it, (S)tand, or (D)ouble-down? "
     input = gets.chomp.upcase
     if input == 'H'
       @player.hand.cards << @dealer.deal
@@ -47,6 +47,15 @@ class Blackjack
         you_lose
       end
       game_round
+    elsif input == 'D'
+      @bet = @bet * 2
+      @player.hand.cards << @dealer.deal
+      @player.hand.check_for_bust
+      if @player.hand.bust == true
+        puts "Oh no you have #{@player.hand.value} you busted!"
+        you_lose
+      end
+      dealer_draws
     else
       dealer_draws
     end
