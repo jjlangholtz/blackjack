@@ -1,5 +1,6 @@
 require 'player'
 require 'dealer'
+require 'pry'
 
 class Blackjack
   attr_accessor :bet
@@ -7,7 +8,6 @@ class Blackjack
   def initialize
     @player = Player.new
     @dealer = Dealer.new
-    @won = false
   end
 
   def start
@@ -67,21 +67,26 @@ class Blackjack
   end
 
   def you_win
+    puts ''
     @player.chips += @bet
     next_round
   end
 
   def you_lose
+    puts ''
     @player.chips -= @bet
-    finish_game if @player.chips <= 0
     next_round
   end
 
   def next_round
     discard_hands
     starting_hand
-    get_user_bet
-    game_round
+    if @player.chips <= 0
+      finish_game
+    else
+      get_user_bet
+      game_round
+    end
   end
 
   def discard_hands
@@ -114,6 +119,8 @@ class Blackjack
     while @dealer.hand.value < 17
       @dealer.draw
     end
+    dealer_hand = @dealer.hand.to_s
+    puts "The dealer's hand is #{dealer_hand}"
     if @dealer.hand.value > 21
       puts "The dealer has #{@dealer.hand.value}. Dealer busts!"
       you_win
@@ -123,7 +130,9 @@ class Blackjack
   end
 
   def finish_game
+  # binding.pry
     puts 'You are out of chips! Game over :('
+    exit
   end
 end
 

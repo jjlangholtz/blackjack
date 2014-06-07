@@ -9,6 +9,7 @@ class Hand
     @bust = false
     @ace = false
     @value = 10
+    binding.pry
   end
 
   def check_for_bust
@@ -32,7 +33,7 @@ class Hand
   def value
     ace?
     if @ace == true
-      if total + 10 < 21
+      if total + 10 < 22
         @value = total + 10
       else
         @value = total

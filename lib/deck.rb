@@ -8,10 +8,10 @@ class Deck
     @ranks = [:A, 2, 3, 4, 5, 6, 7 ,8, 9, 10, :J, :Q, :K]
     @size = 52
 
-    order_deck
+    build_deck
   end
 
-  def order_deck
+  def build_deck
     add_clubs
     add_diamonds
     add_hearts
@@ -43,7 +43,13 @@ class Deck
   end
 
   def draw
-    @cards.shift
+    if cards_left > 0
+      @cards.shift
+    else
+      build_deck
+      shuffle
+      draw
+    end
   end
 
   def cards_left
