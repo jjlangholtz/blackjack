@@ -38,12 +38,12 @@ class Blackjack
 
   def get_hit_or_stand
     print "Do you want to (H)it or (S)tand? "
-    input = gets.chomp
+    input = gets.chomp.upcase
     if input == 'H'
       @player.hand.cards << @dealer.deal
       @player.hand.check_for_bust
       if @player.hand.bust == true
-        puts "Oh no you have #{@player.hand.hand_value} you busted!"
+        puts "Oh no you have #{@player.hand.value} you busted!"
         you_lose
       end
       game_round
@@ -53,15 +53,15 @@ class Blackjack
   end
 
   def compare_to_dealer
-    puts "You have #{@player.hand.hand_value}."
-    if @player.hand.hand_value == @dealer.hand.hand_value
-      puts "The dealer has #{@dealer.hand.hand_value}. Dealer wins!"
+    puts "You have #{@player.hand.value}."
+    if @player.hand.value == @dealer.hand.value
+      puts "The dealer has #{@dealer.hand.value}. Dealer wins!"
       you_lose
-    elsif @player.hand.hand_value < @dealer.hand.hand_value
-      puts "The dealer has #{@dealer.hand.hand_value}. Dealer wins!"
+    elsif @player.hand.value < @dealer.hand.value
+      puts "The dealer has #{@dealer.hand.value}. Dealer wins!"
       you_lose
     else
-      puts "The dealer has #{@dealer.hand.hand_value}. You win!"
+      puts "The dealer has #{@dealer.hand.value}. You win!"
       you_win
     end
   end
@@ -87,6 +87,7 @@ class Blackjack
   def discard_hands
     @player.hand.cards = []
     @player.hand.bust = false
+    @player.hand.ace = false
     @dealer.hand.cards = []
   end
 
@@ -110,7 +111,7 @@ class Blackjack
   end
 
   def dealer_draws
-    while @dealer.hand.hand_value < 17
+    while @dealer.hand.value < 17
       @dealer.draw
     end
     if @dealer.hand.value > 21

@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require 'hand'
+require 'pry'
 
 class HandTest < MiniTest::Unit::TestCase
   def setup
@@ -20,5 +21,29 @@ class HandTest < MiniTest::Unit::TestCase
 
     assert bad_hand.bust
     refute good_hand.bust
+  end
+
+  def test_ace_is_11_unless_hand_busts
+    sample_hand = Hand.new
+    sample_hand.cards << Card.new(:A, :clubs)
+
+    another_hand = Hand.new
+    another_hand.cards << Card.new(:A, :clubs)
+    another_hand.cards << Card.new(:J, :clubs)
+    another_hand.cards << Card.new(:Q, :clubs)
+
+ #  binding.pry
+    assert_equal 11, sample_hand.value
+    assert_equal 21, another_hand.value
+  end
+
+  def test_aces_handle_correctly
+    hand_of_aces = Hand.new
+    hand_of_aces.cards << Card.new(:A, :clubs)
+    hand_of_aces.cards << Card.new(:A, :diamonds)
+    hand_of_aces.cards << Card.new(:A, :spades)
+    hand_of_aces.cards << Card.new(:A, :hearts)
+
+    assert_equal 14, hand_of_aces.value
   end
 end
