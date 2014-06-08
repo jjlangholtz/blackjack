@@ -10,6 +10,8 @@ Let the dealer draw additional cards until his or her hand exceeds 21.
 
 # Usage
 
+[Sample script](https://gist.github.com/jjlangholtz/a586f3f2da32ef45e272)
+
 Clone into local directory and change directory into /blackjack then run:
 
     ruby -Ilib lib/blackjack.rb
@@ -17,4 +19,20 @@ Clone into local directory and change directory into /blackjack then run:
 You start the game with $100 in chips and the game ends when you no longer have
 any chips left.
 
-[Sample script](https://gist.github.com/jjlangholtz/a586f3f2da32ef45e272)
+Each round of the game starts with the dealer drawing two cards for himself and dealing two
+cards to you. Only one of the dealer's cards is revealed to you. Afterwards you
+can input H - Hit, S - Stand, or D - Double-down.
+
+H - The dealer deals you another card.
+
+S - Keep your current hand.
+
+D - The dealer deals only one more card and your bet is doubled.
+
+
+# Todo
+
+* Write help command and documentation
+* Add more tests for behavior
+* Re-factor code and conform to style guidelines
+* Add 'Split' feature
