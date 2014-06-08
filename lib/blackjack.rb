@@ -1,5 +1,6 @@
 require 'player'
 require 'dealer'
+require 'pry'
 
 # Class that creates blackjack objects
 class Blackjack
@@ -80,9 +81,12 @@ class Blackjack
 
   def compare_to_dealer
     puts "You have #{@player.hand.value}."
-    if @player.hand.value <= @dealer.hand.value
+    if @player.hand.value < @dealer.hand.value
       puts "The dealer has #{@dealer.hand.value}. Dealer wins!"
       you_lose
+    elsif @player.hand.value == @dealer.hand.value
+      puts 'Standoff! You get to keep your bet'
+      standoff
     else
       puts "The dealer has #{@dealer.hand.value}. You win!"
       you_win
@@ -98,6 +102,11 @@ class Blackjack
   def you_lose
     puts ''
     @player.chips -= @bet
+    next_round
+  end
+
+  def standoff
+    puts ''
     next_round
   end
 
