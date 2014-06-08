@@ -38,5 +38,4 @@ D - The dealer deals only one more card and your bet is doubled.
 * Add 'Split' feature
 * Add 'Surrender' feature
 * Add 'Insurance' feature
-* Restrict betting to amount of chips player has
 * Allow for multiple players

@@ -35,6 +35,10 @@ class Blackjack
     puts "You currently have $#{@player.chips}"
     print 'How much would you like to bet? '
     @bet = gets.to_i
+    if @bet > @player.chips
+      puts "You don't have enough chips!"
+      bet_amount
+    end
   end
 
   def player_move
@@ -56,8 +60,14 @@ class Blackjack
 
   def double_down
     @bet *= 2
-    player_bust_check
-    dealer_draws
+    if @bet > @player.chips
+      puts "You don't have enough chips"
+      @bet /= 2
+      player_move
+    else
+      player_bust_check
+      dealer_draws
+    end
   end
 
   def player_bust_check
