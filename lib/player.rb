@@ -1,3 +1,4 @@
+# Class for making player objects
 class Player
   attr_accessor :chips, :hand
 

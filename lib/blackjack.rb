@@ -1,7 +1,7 @@
 require 'player'
 require 'dealer'
-require 'pry'
 
+# Class that creates blackjack objects
 class Blackjack
   attr_accessor :bet
 
@@ -11,13 +11,14 @@ class Blackjack
   end
 
   def start
-    puts "Welcome to Blackjack!"
-    puts "*" * 20
+    puts 'Welcome to Blackjack!'
+    puts '*' * 20
+    @dealer.deck.shuffle
   end
 
   def play
     start
-    get_user_bet
+    bet_amount
     starting_hand
     show_dealer_hand
     show_player_hand
@@ -30,43 +31,46 @@ class Blackjack
     player_move
   end
 
-  def get_user_bet
+  def bet_amount
     puts "You currently have $#{@player.chips}"
-    print "How much would you like to bet? "
+    print 'How much would you like to bet? '
     @bet = gets.to_i
   end
 
   def player_move
-    print "Do you want to (H)it, (S)tand, or (D)ouble-down? "
-    input = gets.chomp.upcase
-    if input == 'H'
-      @player.hand.cards << @dealer.deal
-      @player.hand.check_for_bust
-      if @player.hand.bust == true
-        puts "Oh no you have #{@player.hand.value} you busted!"
-        you_lose
-      end
+    player_choice
+    if @input == 'H'
+      player_bust_check
       game_round
-    elsif input == 'D'
-      @bet = @bet * 2
-      @player.hand.cards << @dealer.deal
-      @player.hand.check_for_bust
-      if @player.hand.bust == true
-        puts "Oh no you have #{@player.hand.value} you busted!"
-        you_lose
-      end
-      dealer_draws
+    elsif @input == 'D'
+      double_down
     else
       dealer_draws
     end
   end
 
+  def player_choice
+    print 'Do you want to (H)it, (S)tand, or (D)ouble-down? '
+    @input = gets.chomp.upcase
+  end
+
+  def double_down
+    @bet *= 2
+    player_bust_check
+    dealer_draws
+  end
+
+  def player_bust_check
+    @player.hand.cards << @dealer.deal
+    @player.hand.check_for_bust
+    return unless @player.hand.bust == true
+    puts "Oh no you have #{@player.hand.value} you busted!"
+    you_lose
+  end
+
   def compare_to_dealer
     puts "You have #{@player.hand.value}."
-    if @player.hand.value == @dealer.hand.value
-      puts "The dealer has #{@dealer.hand.value}. Dealer wins!"
-      you_lose
-    elsif @player.hand.value < @dealer.hand.value
+    if @player.hand.value <= @dealer.hand.value
       puts "The dealer has #{@dealer.hand.value}. Dealer wins!"
       you_lose
     else
@@ -93,7 +97,7 @@ class Blackjack
     if @player.chips <= 0
       finish_game
     else
-      get_user_bet
+      bet_amount
       game_round
     end
   end
@@ -106,7 +110,6 @@ class Blackjack
   end
 
   def starting_hand
-    @dealer.deck.shuffle
     @dealer.draw
     @dealer.draw
     @player.hand.cards << @dealer.deal
@@ -125,9 +128,7 @@ class Blackjack
   end
 
   def dealer_draws
-    while @dealer.hand.value < 17
-      @dealer.draw
-    end
+    @dealer.draw while @dealer.hand.value < 17
     dealer_hand = @dealer.hand.to_s
     puts "The dealer's hand is #{dealer_hand}"
     if @dealer.hand.value > 21
@@ -139,7 +140,6 @@ class Blackjack
   end
 
   def finish_game
- # binding.pry
     puts 'You are out of chips! Game over :('
     exit
   end

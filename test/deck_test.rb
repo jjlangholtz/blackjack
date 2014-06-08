@@ -1,6 +1,7 @@
-require "minitest/autorun"
-require "deck"
+require 'minitest/autorun'
+require 'deck'
 
+# Class for testing deck objects
 class DeckTest < MiniTest::Unit::TestCase
   def setup
     @deck = Deck.new
@@ -24,19 +25,13 @@ class DeckTest < MiniTest::Unit::TestCase
     assert_equal card, Card.new(2, :clubs)
 
     11.times { @deck.draw }
-
-    card = @deck.draw
-    assert_equal card, Card.new(:A, :diamonds)
+    assert_equal @deck.draw, Card.new(:A, :diamonds)
 
     12.times { @deck.draw }
-
-    card = @deck.draw
-    assert_equal card, Card.new(:A, :hearts)
+    assert_equal @deck.draw, Card.new(:A, :hearts)
 
     12.times { @deck.draw }
-
-    card = @deck.draw
-    assert_equal card, Card.new(:A, :spades)
+    assert_equal @deck.draw, Card.new(:A, :spades)
   end
 
   def test_deck_knows_how_many_are_left
@@ -45,12 +40,6 @@ class DeckTest < MiniTest::Unit::TestCase
     30.times { @deck.draw }
 
     assert_equal @deck.cards_left, 22
-  end
-
-  def test_empty_deck_returns_nil_on_draw
-    52.times { @deck.draw }
-
-    assert_nil @deck.draw
   end
 
   def test_deck_can_be_shuffled

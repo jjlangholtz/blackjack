@@ -1,3 +1,4 @@
+# Class that creates card object
 class Card
   attr_accessor :rank, :suit
 
@@ -7,7 +8,7 @@ class Card
   end
 
   def ==(other)
-    self.rank == other.rank && self.suit == other.suit
+    rank == other.rank && suit == other.suit
   end
 
   def rank_order

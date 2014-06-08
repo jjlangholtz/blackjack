@@ -1,6 +1,7 @@
 require 'deck'
 require 'hand'
 
+# Class that creates dealer objects
 class Dealer
   attr_accessor :deck, :hand
 

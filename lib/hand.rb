@@ -1,6 +1,6 @@
 require 'deck'
-require 'pry'
 
+# Class for creating hand objects
 class Hand
   attr_accessor :ace, :cards, :bust, :value
 
@@ -9,7 +9,6 @@ class Hand
     @bust = false
     @ace = false
     @value = 10
-  # binding.pry
   end
 
   def check_for_bust
@@ -21,7 +20,6 @@ class Hand
   end
 
   def ace?
-  # binding.pry
     ranks = @cards.map { |card| card.rank }
     @ace = ranks.include?(:A)
   end
@@ -45,6 +43,6 @@ class Hand
 
   def total
     values = @cards.map { |card| card.rank_value }
-    @value = values.inject(0) { |sum, item| sum + item }
+    @value = values.reduce(0, :+)
   end
 end

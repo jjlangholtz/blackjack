@@ -1,6 +1,7 @@
-require "minitest/autorun"
-require "card"
+require 'minitest/autorun'
+require 'card'
 
+# Class for testing card objects
 class CardTest < MiniTest::Unit::TestCase
   def test_that_card_has_a_suit
     card = Card.new(:A, :spades)

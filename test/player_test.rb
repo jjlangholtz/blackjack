@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'player'
 
+# Class for testing player object
 class PlayerTest < MiniTest::Unit::TestCase
   def setup
     @player = Player.new

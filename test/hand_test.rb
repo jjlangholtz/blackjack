@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'hand'
-require 'pry'
 
+# Class for testing hand objects
 class HandTest < MiniTest::Unit::TestCase
   def setup
     @hand = Hand.new
@@ -32,7 +32,6 @@ class HandTest < MiniTest::Unit::TestCase
     another_hand.cards << Card.new(:J, :clubs)
     another_hand.cards << Card.new(:Q, :clubs)
 
- #  binding.pry
     assert_equal 11, sample_hand.value
     assert_equal 21, another_hand.value
   end

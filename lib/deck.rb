@@ -1,11 +1,12 @@
-require "card"
+require 'card'
 
+# Class that creates deck models
 class Deck
   attr_reader :size
 
   def initialize
     @cards = []
-    @ranks = [:A, 2, 3, 4, 5, 6, 7 ,8, 9, 10, :J, :Q, :K]
+    @ranks = [:A, 2, 3, 4, 5, 6, 7, 8, 9, 10, :J, :Q, :K]
     @size = 52
 
     build_deck
@@ -46,6 +47,9 @@ class Deck
     if cards_left > 0
       @cards.shift
     else
+      puts '*' * 40
+      puts 'The dealer pulls out a new deck and shuffles it.'
+      puts ''
       build_deck
       shuffle
       draw

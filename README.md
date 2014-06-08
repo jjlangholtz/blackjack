@@ -34,5 +34,9 @@ D - The dealer deals only one more card and your bet is doubled.
 
 * Write help command and documentation
 * Add more tests for behavior
-* Re-factor code and conform to style guidelines
+* Add 'Push' feature when dealer and player have the same value
 * Add 'Split' feature
+* Add 'Surrender' feature
+* Add 'Insurance' feature
+* Restrict betting to amount of chips player has
+* Allow for multiple players

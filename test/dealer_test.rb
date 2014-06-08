@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'dealer'
 require 'pry'
 
+# Class for testing dealer objects
 class DealerTest < MiniTest::Unit::TestCase
   def setup
     @dealer = Dealer.new
@@ -17,13 +18,5 @@ class DealerTest < MiniTest::Unit::TestCase
     after_draw = @dealer.deck.cards_left
 
     assert before_draw > after_draw
-  end
-
-  def test_dealer_opens_new_deck_when_cards_run_out
-    full_deck = @dealer.deck
-    52.times { full_deck.draw }
-
-  # binding.pry
-    assert_equal 52, @dealer.deck.cards.size
   end
 end
