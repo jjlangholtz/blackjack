@@ -36,7 +36,7 @@ class Blackjack
     puts "You currently have $#{@player.chips}"
     print 'How much would you like to bet? '
     @bet = gets.to_i
-    if @bet > @player.chips
+    if @bet > @player.chips && @bet > 0
       puts "You don't have enough chips!"
       bet_amount
     end

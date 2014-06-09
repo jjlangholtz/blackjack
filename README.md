@@ -38,4 +38,3 @@ D - The dealer deals only one more card and your bet is doubled.
 * Add 'Surrender' feature
 * Add 'Insurance' feature
 * Allow for multiple players
-* Prevent negative bets
