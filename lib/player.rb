@@ -1,9 +1,11 @@
+require 'person'
+
 # Class for making player objects
-class Player
-  attr_accessor :chips, :hand
+class Player < Person
+  attr_accessor :chips
 
   def initialize
     @chips = 100
-    @hand = Hand.new
+    super
   end
 end

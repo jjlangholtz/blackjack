@@ -1,5 +1,7 @@
 # Class that creates card object
 class Card
+  include Comparable
+
   attr_accessor :rank, :suit
 
   def initialize(rank, suit)
@@ -7,8 +9,12 @@ class Card
     @suit = suit
   end
 
-  def ==(other)
-    rank == other.rank && suit == other.suit
+  def <=>(other)
+    rank <=> other.rank && suit <=> other.suit
+  end
+
+  def greater_than?(other)
+    rank_order > other.rank_order
   end
 
   def rank_order
@@ -48,9 +54,5 @@ class Card
 
   def to_s
     rank_format + suit_format
-  end
-
-  def greater_than?(other)
-    rank_order > other.rank_order
   end
 end
