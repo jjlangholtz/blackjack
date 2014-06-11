@@ -13,8 +13,10 @@ class Hand
     @value = 10
   end
 
-  def each(&block)
-    @cards.each(&block)
+  def each
+    @cards.each do |card|
+      yield card
+    end
   end
 
   def check_for_bust

@@ -157,6 +157,3 @@ class Blackjack
     exit
   end
 end
-
-game = Blackjack.new
-game.play
